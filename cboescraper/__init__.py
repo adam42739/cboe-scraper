@@ -1,0 +1,1 @@
+from cboescraper import scraper
