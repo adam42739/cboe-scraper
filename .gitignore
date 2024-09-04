@@ -2,3 +2,6 @@ env
 cboescraper/__pycache__
 main.py
 base
+cboescraper.egg-info
+dist
+build
