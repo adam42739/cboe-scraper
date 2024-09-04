@@ -71,5 +71,5 @@ Datetime object for the date to grab the options.
 #### Example
 
 ```python
-options.load_ticker("aapl", "base/", datetime.today()
+options.load_ticker("aapl", "base/", datetime.today())
 ```
