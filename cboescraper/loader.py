@@ -23,6 +23,7 @@ def load_csv(ticker, downloads):
     df = pandas.read_csv(path, header=2)
     df = df[CSV_COLS_KEEP.keys()]
     df = df.rename(CSV_COLS_KEEP, axis="columns")
+    scraper.rm_downloads(ticker, downloads)
     return df
 
 
