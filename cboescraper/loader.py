@@ -1,5 +1,7 @@
 import pandas
 from cboescraper import scraper
+import datetime
+import os
 
 
 CSV_COLS_KEEP = {
@@ -16,9 +18,23 @@ CSV_COLS_KEEP = {
 }
 
 
-def _load_csv(ticker, downloads):
+def load_csv(ticker, downloads):
     path = scraper.download_path(ticker, downloads)
     df = pandas.read_csv(path, header=2)
     df = df[CSV_COLS_KEEP.keys()]
     df = df.rename(CSV_COLS_KEEP, axis="columns")
     return df
+
+
+def save_df(ticker, df, base, date):
+    date_string = datetime.datetime.strftime(date, "%Y-%m-%d")
+    path = base + ticker + "=" + date_string + ".csv"
+    df.to_csv(path)
+
+
+def read_df(ticker, base, date):
+    date_string = datetime.datetime.strftime(date, "%Y-%m-%d")
+    path = base + ticker + "=" + date_string + ".csv"
+    if not os.path.exists(path):
+        print("Error: " + path + " does not exist.")
+    return pandas.read_csv(path)
