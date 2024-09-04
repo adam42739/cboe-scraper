@@ -42,6 +42,12 @@ Path to the directory where data files will be stored.
 
 Datetime object for the current date. Not relavent for data collection - only used to label data files stored in `base`.
 
+#### Example
+
+```python
+options.save_tickers(["aapl", "msft"], "C:/Users/user1/Downloads/", "base/", datetime.today())
+```
+
 ### Loading data files
 
 ```python
@@ -61,3 +67,9 @@ Path to the directory where data files are stored.
 > **`date`: _datetime_**
 
 Datetime object for the date to grab the options.
+
+#### Example
+
+```python
+options.load_ticker("aapl", "base/", datetime.today()
+```
