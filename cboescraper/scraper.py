@@ -62,6 +62,7 @@ class Driver:
         link.click()
 
     def download_ticker(self, ticker, load_time):
+        print("Downloading " + ticker + " ...")
         self._get_ticker(ticker)
         self._find_selectors()
         self._set_selectors()
@@ -69,18 +70,22 @@ class Driver:
         self._download()
 
 
+def download_path(ticker, downloads):
+    return downloads + ticker + CBOE_FILE_ENDING + ".csv"
+
+
 def _exists(ticker, downloads):
-    path = downloads + ticker + CBOE_FILE_ENDING + ".csv"
+    path = download_path(ticker, downloads)
     return os.path.exists(path)
 
 
 def _apt_size(ticker, downloads, size):
-    path = downloads + ticker + CBOE_FILE_ENDING + ".csv"
+    path = download_path(ticker, downloads)
     return os.path.getsize(path) > size
 
 
-def _rm_file(ticker, downloads):
-    path = downloads + ticker + CBOE_FILE_ENDING + ".csv"
+def rm_downloads(ticker, downloads):
+    path = download_path(ticker, downloads)
     os.remove(path)
 
 
@@ -102,9 +107,11 @@ def _failed(tickers, downloads):
     for ticker in tickers:
         if not _exists(ticker, downloads):
             failed.append(ticker)
+            print("Failed to download " + ticker + ".")
         elif not _apt_size(ticker, downloads, APT_SIZE):
-            _rm_file(ticker, downloads)
+            rm_downloads(ticker, downloads)
             failed.append(ticker)
+            print("Failed to download " + ticker + ".")
     return failed
 
 
