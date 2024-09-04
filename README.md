@@ -2,7 +2,7 @@
 
 ## Introduction
 
-cboe-scraper uses [Selenium](https://selenium-python.readthedocs.io) to download options data from [cboe.com](https://www.cboe.com). CBOE does not offer free historical options data, but cboe-scraper can be run regularly to get and store current options data in CSV format.
+cboe-scraper uses [Selenium](https://selenium-python.readthedocs.io) to download options data from [cboe.com](https://www.cboe.com). CBOE does not offer free historical data, but cboe-scraper can be run regularly to get and store current options in CSV format.
 
 ## Installation
 
