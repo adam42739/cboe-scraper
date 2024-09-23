@@ -30,7 +30,7 @@ def load_csv(ticker, downloads):
 def save_df(ticker, df, base, date):
     date_string = datetime.datetime.strftime(date, "%Y-%m-%d")
     path = base + ticker + "=" + date_string + ".csv"
-    df.to_csv(path)
+    df.to_csv(path, index=False)
 
 
 def read_df(ticker, base, date):
